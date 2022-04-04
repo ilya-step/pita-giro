@@ -1057,6 +1057,10 @@ select {
 	.footer-pay {
 		margin: 15px 0;
 	}
+
+	.menubox .geoposition {
+		display: none;
+	}
 }
 
 @media screen and (max-width: 750px) {
@@ -1090,6 +1094,13 @@ select {
 @media screen and (max-width: 630px) {
 	.main-header-left .geoposition {
 		display: none;
+	}
+
+	.menubox .geoposition {
+		display: block;
+		font-size: 19px;
+		max-width: 180px;
+		margin-top: 50px;
 	}
 
 	.products {
