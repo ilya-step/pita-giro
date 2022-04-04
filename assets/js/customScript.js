@@ -49,6 +49,23 @@ $('.popup__close').click(function () {
 	p.removeClass('_active')
 })
 
+
+// аккордион
+var acc = document.getElementsByClassName("categories-accordion");
+var i;
+for (i = 0; i < acc.length; i++) {
+	acc[i].addEventListener("click", function () {
+		this.classList.toggle("active");
+		var panel = this.nextElementSibling;
+		if (panel.style.height) {
+			panel.style.height = null;
+		} else {
+			panel.style.height = panel.scrollHeight + "px";
+		}
+	});
+}
+
+
 // маска на телефон
 let selector = document.querySelectorAll('input[type="tel"]');
 let im = new Inputmask('+7 (999) 999-99-99');
@@ -118,101 +135,3 @@ $(document).ready(function () {
 		}
 	});
 });
-
-// Аккордион с вопросами
-$('.accordion').accordion({
-	heightStyle: 'content',
-	active: 1,
-	header: '> .accordion-item > .accordion-header'
-});
-
-// квиз
-var quizCounter = 1;
-var qiuzButtons = document.getElementsByClassName("quiz-btn");
-var l;
-var answers1 = document.querySelector(".answers1");
-var answers2 = document.querySelector(".answers2");
-var answers3 = document.querySelector(".answers3");
-var answers4 = document.querySelector(".answers4");
-var answers5 = document.querySelector(".answers5");
-var questCounter = document.querySelector(".quest-counter");
-var answers4 = document.querySelector(".answers4");
-var question = document.querySelector(".question");
-var progressLine = document.querySelector(".progress-line");
-var quizButtons = document.querySelector(".quiz-buttons");
-for (l = 0; l < qiuzButtons.length; l++) {
-	qiuzButtons[l].addEventListener("click", function () {
-		if (this.classList.contains("_prev")) {
-			// кнопка назад
-			if (quizCounter == 2) {
-				quizCounter--;
-				answers2.classList.remove("show");
-				answers1.classList.add("show");
-				questCounter.innerHTML = "Вопрос 1 из 4";
-				question.innerHTML = "1. Куда вы хотите заказать шторы?";
-				progressLine.style.width = "25%";
-				return;
-			};
-			if (quizCounter == 3) {
-				quizCounter--;
-				answers3.classList.remove("show");
-				answers2.classList.add("show");
-				questCounter.innerHTML = "Вопрос 2 из 4";
-				question.innerHTML = "2. Сколько окон хотите оформить?";
-				progressLine.style.width = "50%";
-				return;
-			};
-			if (quizCounter == 4) {
-				quizCounter--;
-				answers4.classList.remove("show");
-				answers3.classList.add("show");
-				questCounter.innerHTML = "Вопрос 3 из 4";
-				question.innerHTML = "3. Какой вид оформления Вас интересует?";
-				progressLine.style.width = "75%";
-				return;
-			};
-		} else {
-			// кнопка вперёд
-			if (quizCounter == 1) {
-				quizCounter++;
-				answers1.classList.remove("show");
-				answers2.classList.add("show");
-				questCounter.innerHTML = "Вопрос 2 из 4";
-				question.innerHTML = "2. Сколько окон хотите оформить?";
-				progressLine.style.width = "50%";
-				return;
-			};
-			if (quizCounter == 2) {
-				quizCounter++;
-				answers2.classList.remove("show");
-				answers3.classList.add("show");
-				questCounter.innerHTML = "Вопрос 3 из 4";
-				question.innerHTML = "3. Какой вид оформления Вас интересует?";
-				progressLine.style.width = "75%";
-				return;
-			};
-			if (quizCounter == 3) {
-				quizCounter++;
-				answers3.classList.remove("show");
-				answers4.classList.add("show");
-				questCounter.innerHTML = "Вопрос 4 из 4";
-				question.innerHTML = "4. Какой тип штор вас интересует?";
-				progressLine.style.width = "95%";
-				return;
-			};
-			if (quizCounter == 4) {
-				quizCounter++;
-				answers4.classList.remove("show");
-				answers5.classList.add("show");
-				questCounter.innerHTML = "Расчет пройден на 100%";
-				question.innerHTML = "";
-				progressLine.style.width = "100%";
-				quizButtons.classList.remove("show");
-				document.querySelector(".quiz__info").style.display = "none";
-				document.querySelector(".win-bg").style.display = "block";
-				document.querySelector(".quiz__body").classList.add("win");
-				return;
-			};
-		}
-	});
-}
