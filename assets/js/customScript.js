@@ -34,22 +34,6 @@ if (iconMenu) {
 }
 
 
-// Попап
-p = $('.popup__overlay')
-$('.popup__toggle').click(function () {
-	p.addClass('_active')
-})
-p.click(function (event) {
-	e = event || window.event
-	if (e.target == this) {
-		$(p).removeClass('_active')
-	}
-})
-$('.popup__close').click(function () {
-	p.removeClass('_active')
-})
-
-
 // аккордион
 var acc = document.getElementsByClassName("categories-accordion");
 var i;
@@ -64,16 +48,6 @@ for (i = 0; i < acc.length; i++) {
 		}
 	});
 }
-
-
-// маска на телефон
-let selector = document.querySelectorAll('input[type="tel"]');
-let im = new Inputmask('+7 (999) 999-99-99');
-im.mask(selector);
-let selector2 = document.querySelector('input[type="tel"]');
-selector2.addEventListener('input', function () {
-	const re = /^\d*(\.\d+)?$/
-});
 
 
 // плавная прокрутка по якорям
@@ -93,11 +67,14 @@ for (let anchor of anchors) {
 $(document).ready(function () {
 	$(".owl-carousel").owlCarousel({
 		loop: true, //Зацикливаем слайдер
-		margin: 10, //Отступ от картино если выводите больше 1
+		margin: 20, //Отступ от картино если выводите больше 1
 		nav: true, //Включил навигацию
 		dots: false, //Отключил точки
 		smartSpeed: 1000, //Время движения слайда
 		checkVisible: false,
+		autoplay: true,
+		autoplayTimeout: 5000,
+		autoplayHoverPause: true,
 		responsive: { //Адаптация в зависимости от разрешения экрана
 			0: {
 				items: 1
@@ -111,27 +88,25 @@ $(document).ready(function () {
 		}
 	});
 });
-// слайдер отзывы
-$(document).ready(function () {
-	$(".owl-carousel-feed").owlCarousel({
-		loop: true, //Зацикливаем слайдер
-		margin: 10, //Отступ от картино если выводите больше 1
-		nav: true, //Включил навигацию
-		dots: false, //Отключил точки
-		smartSpeed: 1000, //Время движения слайда
-		responsive: { //Адаптация в зависимости от разрешения экрана
-			0: {
-				items: 1
-			},
-			700: {
-				items: 2
-			},
-			900: {
-				items: 3
-			},
-			1200: {
-				items: 4
-			}
-		}
-	});
-});
+
+
+// счетчик товара в карточке товара
+let buttonCountPlus = document.getElementById("buttonCountPlus");
+let buttonCountMinus = document.getElementById("buttonCountMinus");
+let count = document.getElementById("buttonCountNumber");
+let countPost = document.getElementById("num");
+let number = 1;
+buttonCountPlus.onclick = function () {
+	if (number <= 100) {
+		number++;
+		count.innerHTML = number;
+		countPost.value = number;
+	}
+};
+buttonCountMinus.onclick = function () {
+	if (number >= 2) {
+		number--;
+		count.innerHTML = number;
+		countPost.value = number;
+	}
+}
